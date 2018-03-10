@@ -6,6 +6,10 @@ import (
 	"time"
 )
 
+type PaymentOption interface {
+	ProcessPayment(float32) bool
+}
+
 type CreditCard struct {
 	ownerName       string
 	cardNumber      string
@@ -81,4 +85,9 @@ func (c *CreditCard) SetSecurityCode(value int) error {
 
 func (c CreditCard) AvailableCredit() float32 {
 	return 5000.00
+}
+
+func (c CreditCard) ProcessPayment(float32) bool {
+	fmt.Println("Processing a credit card payment...")
+	return true
 }
